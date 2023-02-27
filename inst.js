@@ -38,26 +38,26 @@ function getEmptySlots() {
 function onKeyup(e) {
   if (e.keyCode < 65 || e.keyCode > 90) return;
   let letter = e.key;
-    let empty = getEmptySlots();
-    let guessed = 0;
-    empty.forEach(l => {
-      if (l.k == letter) {
-        l.textContent = letter;
-        delete l.k;
-        ++guessed;
-      }
-    });
-    if (guessed == 0) {
-      error.textContent = `${error.textContent} ${letter} |`;
-      drawCharacter(mistakes);
-      --mistakes;
+  let empty = getEmptySlots();
+  let guessed = 0;
+  empty.forEach(l => {
+    if (l.k == letter) {
+      l.textContent = letter;
+      delete l.k;
+      ++guessed;
     }
-    if (getEmptySlots().length == 0) {
-      document.getElementById("display").innerHTML = "Congratulations! You won";
-    }else if (mistakes == 0) {
-      document.getElementById("display").innerHTML = "Game Over";
-      alert('Game Over');
-    }
+  });
+  if (guessed == 0) {
+    error.textContent = `${error.textContent} ${letter} |`;
+    drawCharacter(mistakes);
+    --mistakes;
+  }
+  if (getEmptySlots().length == 0) {
+    document.getElementById("display").innerHTML = "Congratulations! You won";
+  }else if (mistakes == 0) {
+    document.getElementById("display").innerHTML = "Game Over";
+    alert('Game Over');
+  }
 }
 function drawCharacter(mistakes) {
   let id = `id`+(mistakes);
